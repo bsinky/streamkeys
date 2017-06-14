@@ -59,6 +59,7 @@
       "amazon": { name: "Amazon Cloud Player", url: "https://www.amazon.com/gp/dmusic/cloudplayer/player" },
       "accuradio": { name: "Accuradio", url: "https://www.accuradio.com" },
       "ambientsleepingpill": { name: "Ambient Sleeping Pill", url: "http://www.ambientsleepingpill.com" },
+      "ampache": { name: "Ampache", url: "http://www.softaculous.com/softaculous/demos/Ampache" },
       "anghami": { name: "Anghami", url: "https://www.anghami.com" },
       "asoftmurmur": { name: "A Soft Murmur", url: "http://www.asoftmurmur.com" },
       "audible": { name: "Audible", url: "http://www.audible.com" },
