@@ -15,7 +15,8 @@
     like: [".thumb.up", null],
     dislike: [".thumb.down", null],
     song: ["#track-name", ".now-playing-bar div div [href*='/album/']"],
-    artist: ["#track-artist", ".now-playing-bar div div [href*='/artist/']"]
+    artist: ["#track-artist", ".now-playing-bar div div [href*='/artist/']"],
+    art: [null, "div.now-playing-bar__left div.cover-art-image.cover-art-image-loaded"]
   };
 
   var controller = new BaseController({
@@ -24,10 +25,22 @@
 
   controller.checkPlayer = function() {
     var that = this;
-    var selectorIndex = window.location.hostname === "open.spotify.com" ? 1 : 0;
+    var useNewPlayer = window.location.hostname === "open.spotify.com";
+    var selectorIndex = useNewPlayer ? 1 : 0;
 
     _.each(multiSelectors, function(value, key) {
       that.selectors[key] = value[selectorIndex];
     });
+
+    if (useNewPlayer) {
+      that.getArtData = function(selector) {
+        if(!selector) return null;
+
+        var dataEl = this.doc().querySelector(selector);
+
+        var backgroundImage = window.getComputedStyle(dataEl)["background-image"];
+        return backgroundImage.match(/url\(["|']?([^"']*)["|']?\)/)[1];
+      };
+    }
   };
 })();
