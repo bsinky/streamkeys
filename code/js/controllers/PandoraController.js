@@ -12,7 +12,7 @@
     like: [".thumbDownButton > a", ".Tuner__Control__ThumbUp__Button"],
     dislike: [".thumbDownButton > a", ".Tuner__Control__ThumbDown__Button"],
 
-    song: [".playerBarSong", ".nowPlayingTopInfo__current__trackName div:nth-child(2) div div"],
+    song: [".playerBarSong", ".nowPlayingTopInfo .Marquee__wrapper__content"],
     artist: [".playerBarArtist", ".nowPlayingTopInfo__current__artistName"],
     album: [".playerBarAlbum", ".nowPlayingTopInfo__current__albumName"],
     art: [".playerBarArt", ".Tuner__Audio__TrackDetail__img > .ImageLoader > .ImageLoader__cover"]
