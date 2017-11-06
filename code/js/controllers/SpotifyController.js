@@ -24,7 +24,10 @@
 
     var dataEl = this.doc().querySelector(selector);
 
-    var backgroundImage = window.getComputedStyle(dataEl)["background-image"];
-    return backgroundImage.match(/url\(["|']?([^"']*)["|']?\)/)[1];
+    if (dataEl !== null)
+    {
+      var backgroundImage = window.getComputedStyle(dataEl)["background-image"];
+      return backgroundImage.match(/url\(["|']?([^"']*)["|']?\)/)[1];
+    }
   };
 })();
