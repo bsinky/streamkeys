@@ -190,10 +190,24 @@
   });
 
   var sendChangeNotification = function(request, sender) {
+    var message = request.stateData.song || "";
+
+    if (request.stateData.duration) {
+      if (request.stateData.currentTime) {
+        message = "(" + request.stateData.currentTime + "/" + request.stateData.duration + ")" + message;
+      }
+      else {
+        message = "(" + request.stateData.duration + ")" + message;
+      }
+    }
+    else if (request.stateData.currentTime) {
+      message = "(" + request.stateData.currentTime + ")" + message;
+    }
+
     chrome.notifications.create(sender.id + request.stateData.siteName, {
         type: "list",
         title: request.stateData.siteName,
-        message: request.stateData.song || "",
+        message: message,
         iconUrl: request.stateData.art || chrome.extension.getURL("icon128.png"),
         items: [
           { title: request.stateData.song, message: "" },

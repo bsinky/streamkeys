@@ -25,7 +25,9 @@
       song: (options.song || null),
       artist: (options.artist || null),
       album: (options.album || null),
-      art: (options.art || null)
+      art: (options.art || null),
+      duration: (options.duration || null),
+      currentTime: (options.currentTime || null)
     };
 
     // Previous player state, used to check vs current player state to see if anything changed
@@ -196,7 +198,9 @@
       ),
       canPlayNext: this.overridePlayNext || !!(this.selectors.playNext && this.doc().querySelector(this.selectors.playNext)),
       canLike: !!(this.selectors.like && this.doc().querySelector(this.selectors.like)),
-      hidePlayer: this.hidePlayer
+      hidePlayer: this.hidePlayer,
+      duration: this.getDurationData(this.selectors.duration),
+      currentTime: this.getCurrentTimeData(this.selectors.currentTime)
     };
   };
 
@@ -233,6 +237,28 @@
     var dataEl = this.doc().querySelector(selector);
     if(dataEl && dataEl.attributes && dataEl.attributes.src) {
       return dataEl.attributes.src.value;
+    }
+
+    return null;
+  };
+
+  BaseController.prototype.getDurationData = function(selector) {
+    if(!selector) return null;
+
+    var dataEl = this.doc().querySelector(selector);
+    if(dataEl && dataEl.textContent) {
+      return dataEl.textContent;
+    }
+
+    return null;
+  };
+
+  BaseController.prototype.getCurrentTimeData = function(selector) {
+    if(!selector) return null;
+
+    var dataEl = this.doc().querySelector(selector);
+    if(dataEl && dataEl.textContent) {
+      return dataEl.textContent;
     }
 
     return null;

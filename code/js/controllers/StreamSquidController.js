@@ -16,6 +16,8 @@
     // Because the attributes contain untruncated song and artist names (unlike the DOM Element text)
     song: "data-track-name",
     artist: "data-artist-name",
+    duration: "#player-duration",
+    currentTime: "#player-time-elapsed"
   });
 
   controller.getSelectedQueueItem = function() {
