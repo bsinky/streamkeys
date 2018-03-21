@@ -200,7 +200,8 @@
       canLike: !!(this.selectors.like && this.doc().querySelector(this.selectors.like)),
       hidePlayer: this.hidePlayer,
       duration: this.getDurationData(this.selectors.duration),
-      currentTime: this.getCurrentTimeData(this.selectors.currentTime)
+      currentTime: this.getCurrentTimeData(this.selectors.currentTime),
+      songProgress: this.getSongProgress()
     };
   };
 
@@ -262,6 +263,10 @@
     }
 
     return null;
+  };
+
+  BaseController.prototype.getSongProgress = function() {
+    return 0;
   };
 
   /**

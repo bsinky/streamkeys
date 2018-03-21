@@ -192,27 +192,16 @@
   var sendChangeNotification = function(request, sender) {
     var message = request.stateData.song || "";
 
-    if (request.stateData.duration) {
-      if (request.stateData.currentTime) {
-        message = "(" + request.stateData.currentTime + "/" + request.stateData.duration + ")" + message;
-      }
-      else {
-        message = "(" + request.stateData.duration + ")" + message;
-      }
-    }
-    else if (request.stateData.currentTime) {
-      message = "(" + request.stateData.currentTime + ")" + message;
+    if (request.stateData.artist) {
+      message = message + " - " + request.stateData.artist;
     }
 
     chrome.notifications.create(sender.id + request.stateData.siteName, {
-        type: "list",
+        type: "progress",
         title: request.stateData.siteName,
         message: message,
         iconUrl: request.stateData.art || chrome.extension.getURL("icon128.png"),
-        items: [
-          { title: request.stateData.song, message: "" },
-          { title: request.stateData.artist || "", message: request.stateData.album || "" }
-        ]
+        progress: request.stateData.songProgress || 0
       }, function(notificationId) {
         if(notificationTimeouts[notificationId])
         {
