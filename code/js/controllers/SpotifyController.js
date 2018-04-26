@@ -30,4 +30,23 @@
       return backgroundImage.match(/url\(["|']?([^"']*)["|']?\)/)[1];
     }
   };
+
+  controller.getSongProgress = function () {
+    var remainingPercentEl = controller.doc().querySelector(".playback-bar .progress-bar__fg");
+    var progress = 0;
+
+    if (remainingPercentEl) {
+      var stylll = remainingPercentEl.style;
+
+      if (stylll) {
+        var widdd = remainingPercentEl.style.width;
+
+        if (widdd) {
+          progress = Math.round(Number(widdd.substring(0, widdd.length - 1)));
+        }
+      }
+    }
+
+    return progress;
+  };
 })();
